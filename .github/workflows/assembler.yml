@@ -45,11 +45,11 @@ jobs:
           token: ${{ secrets.API_ASSEMBLER_TOKEN}}
       - name: Avengers, Assemble!
         id: build_image
-        env:
+        # env:
           # ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
           # ECR_REPOSITORY: "${{ inputs.ECR_REPO }}"
           # IMAGE_TAG: ${{ inputs.TAG }}
-          SEMVER: ${{ inputs.SEMVER }}
+          # SEMVER: ${{ inputs.SEMVER }}
         run: |
           SUFFIX=$(echo $SEMVER | awk -F - '{print $NF}')
           docker build -t core:$SEMVER .

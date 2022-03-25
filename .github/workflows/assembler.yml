@@ -30,6 +30,8 @@ jobs:
 
       - name: Checkout API Demo
         uses: actions/checkout@v3
+        with:
+          path: api
 
       - name: Checkout Dependencies Demo
         uses: actions/checkout@v3
@@ -38,13 +40,13 @@ jobs:
           path: deps
           token: ${{ secrets.API_ASSEMBLER_TOKEN}}
 
+      # This repo will be using the root folder because this is where we build the artifact.
       - name: Checkout Core Demo
         uses: actions/checkout@v3
         with:
           repository: ch4dwick/core-demo
-          path: core
           token: ${{ secrets.API_ASSEMBLER_TOKEN}}
-          
+
       - name: Avengers, Assemble!
         id: build_image
         env:

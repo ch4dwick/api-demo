@@ -24,13 +24,13 @@ jobs:
   build-docker:
     runs-on: ubuntu-latest
     steps:
+      - name: Latest Tag
+        id: latest_tag
+        run: echo ::set-output name=SEMVER::${GITHUB_REF#refs/*/}
       - name: Checkout API Demo
         uses: actions/checkout@v3
         with:
           path: api
-      - name: Latest Tag
-        id: latest_tag
-        run: echo ::set-output name=SEMVER::${GITHUB_REF#refs/*/}
       - name: Checkout Dependencies Demo
         uses: actions/checkout@v3
         with:
@@ -50,9 +50,9 @@ jobs:
           # ECR_REPOSITORY: "${{ inputs.ECR_REPO }}"
           # IMAGE_TAG: ${{ inputs.TAG }}
           SEMVER: ${{ inputs.SEMVER }}
-          run: |
-            SUFFIX=$(echo $SEMVER | awk -F - '{print $NF}')
-            docker build -t core:$SEMVER .
+        run: |
+          SUFFIX=$(echo $SEMVER | awk -F - '{print $NF}')
+          docker build -t core:$SEMVER .
         # run: |
         #   SUFFIX=$(echo $SEMVER | awk -F - '{print $NF}')
         #   docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$SEMVER \

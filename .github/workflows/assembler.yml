@@ -27,22 +27,24 @@ jobs:
       - name: Latest Tag
         id: latest_tag
         run: echo ::set-output name=SEMVER::${GITHUB_REF#refs/*/}
+
       - name: Checkout API Demo
         uses: actions/checkout@v3
-        with:
-          path: api
+
       - name: Checkout Dependencies Demo
         uses: actions/checkout@v3
         with:
           repository: ch4dwick/dependencies-demo
           path: deps
           token: ${{ secrets.API_ASSEMBLER_TOKEN}}
+
       - name: Checkout Core Demo
         uses: actions/checkout@v3
         with:
           repository: ch4dwick/core-demo
           path: core
           token: ${{ secrets.API_ASSEMBLER_TOKEN}}
+          
       - name: Avengers, Assemble!
         id: build_image
         env:

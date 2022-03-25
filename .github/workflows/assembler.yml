@@ -40,7 +40,7 @@ jobs:
           repository: ch4dwick/core-demo
           path: core
           token: ${{ secrets.API_ASSEMBLER_TOKEN}}
-      - name: Build, tag, and push image to Amazon ECR
+      - name: Avengers, Assemble!
         id: build_image
         env:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}

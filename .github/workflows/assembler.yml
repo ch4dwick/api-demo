@@ -27,17 +27,19 @@ jobs:
       - name: Checkout API Demo
         uses: actions/checkout@v3
         with:
-          path: main
-      - name: Checkout Dependencies DEMO
+          path: api
+      - name: Checkout Dependencies Demo
         uses: actions/checkout@v3
         with:
-          repository: github.com/ch4dwick/dependencies-demo
-          path: main
-      - name: Checkout Core
+          repository: ch4dwick/dependencies-demo
+          path: deps
+          token: ${{ secrets.API_ASSEMBLER_TOKEN}}
+      - name: Checkout Core Demo
         uses: actions/checkout@v3
         with:
-          repository: github.com/ch4dwick/core-demo
-          path: main
+          repository: ch4dwick/core-demo
+          path: core
+          token: ${{ secrets.API_ASSEMBLER_TOKEN}}
       - name: Build, tag, and push image to Amazon ECR
         id: build_image
         env:

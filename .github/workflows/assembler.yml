@@ -45,6 +45,7 @@ jobs:
         uses: actions/checkout@v3
         with:
           repository: ch4dwick/core-demo
+          path: core
           token: ${{ secrets.API_ASSEMBLER_TOKEN}}
 
       - name: Avengers, Assemble!

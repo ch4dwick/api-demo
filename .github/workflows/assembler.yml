@@ -57,6 +57,8 @@ jobs:
           SEMVER: ${{ steps.latest_tag.outputs.SEMVER }}
         run: |
           SUFFIX=$(echo $SEMVER | awk -F - '{print $NF}')
+          cd core
+          cp -r ../deps ../api .
           docker build -t core:$SEMVER .
         # run: |
         #   SUFFIX=$(echo $SEMVER | awk -F - '{print $NF}')
